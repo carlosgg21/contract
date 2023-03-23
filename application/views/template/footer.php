@@ -17,7 +17,7 @@
 
 <!-- jQuery 2.2.3 -->
 <script src="<?php echo base_url() ?>assets/jquery.js"></script>
-<script src="<?php echo base_url('assets/bootstrap/js/jquery.js') ?>"></script>  
+<script src="<?php echo base_url('assets/bootstrap/js/jquery.js') ?>"></script>
 <!-- Bootstrap 3.3.6 -->
 <script src="<?php echo base_url() ?>assets/bootstrap/js/bootstrap.min.js"></script>
 <!-- DataTables -->
@@ -33,44 +33,50 @@
 <!--Select mMltiples-->
 <script type="text/javascript" src="<?php echo base_url('assets/dist-select/js/bootstrap-select.min.js') ?>"></script>
 <!--tableexport-->
-<script type="text/javascript" src="<?php echo base_url('assets/tableexport/js-xlsx/xlsx.core.js') ?>"></script> 
-<script type="text/javascript" src="<?php echo base_url('assets/tableexport/file-save/FileSaver.js') ?>"></script> 
+<script type="text/javascript" src="<?php echo base_url('assets/tableexport/js-xlsx/xlsx.core.js') ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/tableexport/file-save/FileSaver.js') ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/tableexport/js/tableexport.js') ?>"></script>
+
+<!-- easy-pie-chart -->
+<script type="text/javascript" src="<?php echo base_url('assets/easy-pie-chart/easypiechart.js') ?>"></script>
+
+<script type="text/javascript" src="<?php echo base_url('assets/morris/raphael-min.js') ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/morris/morris.js') ?>"></script>
 <!--Js utiles par alos controladores-->
-<?php if(isset($js)):?>
-    <script src="<?php echo base_url() ?>assets/js/<?php echo $js;?>"></script>
-<?php endif?>
+<?php if (isset($js)) : ?>
+    <script src="<?php echo base_url() ?>assets/js/<?php echo $js; ?>"></script>
+<?php endif ?>
 
 <script>
-    window.setTimeout(function () {
-        $("#warning-alert").fadeTo(100, 0).slideUp(100, function () {
+    window.setTimeout(function() {
+        $("#warning-alert").fadeTo(100, 0).slideUp(100, function() {
             $(this).remove();
         });
     }, 900);
-    window.setTimeout(function () {
-        $("#success-alert").fadeTo(100, 0).slideUp(100, function () {
+    window.setTimeout(function() {
+        $("#success-alert").fadeTo(100, 0).slideUp(100, function() {
             $(this).remove();
         });
     }, 900);
-    window.setTimeout(function () {
-        $("#ms_modificar").fadeTo(100, 0).slideUp(100, function () {
+    window.setTimeout(function() {
+        $("#ms_modificar").fadeTo(100, 0).slideUp(100, function() {
             $(this).remove();
         });
     }, 900);
-    window.setTimeout(function () {
-        $("#ms_insertar").fadeTo(100, 0).slideUp(100, function () {
+    window.setTimeout(function() {
+        $("#ms_insertar").fadeTo(100, 0).slideUp(100, function() {
             $(this).remove();
         });
     }, 900);
-    window.setTimeout(function () {
-        $("#ms_eliminar").fadeTo(100, 0).slideUp(100, function () {
+    window.setTimeout(function() {
+        $("#ms_eliminar").fadeTo(100, 0).slideUp(100, function() {
             $(this).remove();
         });
     }, 900);
-</script> 
+</script>
 <script>
-    $(document).ready(function () {
-     
+    $(document).ready(function() {
+
         $('#example').dataTable({
             "dom": '<"top"f>rt<"bottom"ip><"clear">',
             "language": {
@@ -98,7 +104,7 @@
                 }
             }
         });
-        
+
         $('.datepicker').datepicker({
             format: "yyyy-mm-dd",
             language: "es",
@@ -106,13 +112,11 @@
             autoclose: true
 
         });
-        
-       
+
+
     });
-    
-     
 </script>
-        
+
 <!--    <script>
         $(document).ready(function(){
             $("#tipo_empresa").change(function () {
@@ -126,7 +130,8 @@
            });
         });        
     </script>   -->
-   
-    
+
+
 </body>
+
 </html>

@@ -15,28 +15,28 @@ class Contrato extends CI_Controller {
         $this->load->model('Servicios_model', 'servicios');    
         $this->load->model('Usuario_model', 'usuarios'); 
         $this->load->model('log_model');
-        $this->load->library('Pdf');
-        $this->load->library('excel');
+        // $this->load->library('Pdf');
+        // $this->load->library('excel');
         $this->load->helper(array('form', 'url'));
     }
 
     public function index() {
 
-        $correcto = $this->utilidades->chequear_loggin();
-        if($correcto <> true){  
-            $permiso = '';
-           if(in_array("48", $this->session->userdata('id_rol'))){
-                $permiso = $this->usuarios->check_permiso($this->session->userdata('usuario'), 48);                
-            }else if(in_array("93", $this->session->userdata('id_rol'))){
-                $permiso = $this->usuarios->check_permiso($this->session->userdata('usuario'), 93);               
-            }else if(in_array("47", $this->session->userdata('id_rol'))){
-                $permiso = $this->usuarios->check_permiso($this->session->userdata('usuario'), 47);                
-            }else if(in_array("129", $this->session->userdata('id_rol'))){
-                $permiso = $this->usuarios->check_permiso($this->session->userdata('usuario'), 129);                
-            }else if(in_array("49", $this->session->userdata('id_rol'))){
-                $permiso = $this->usuarios->check_permiso($this->session->userdata('usuario'), 49);                
-            }
-            if($permiso == true){
+        // $correcto = $this->utilidades->chequear_loggin();
+        // if($correcto <> true){  
+        //     $permiso = '';
+        //    if(in_array("48", $this->session->userdata('id_rol'))){
+        //         $permiso = $this->usuarios->check_permiso($this->session->userdata('usuario'), 48);                
+        //     }else if(in_array("93", $this->session->userdata('id_rol'))){
+        //         $permiso = $this->usuarios->check_permiso($this->session->userdata('usuario'), 93);               
+        //     }else if(in_array("47", $this->session->userdata('id_rol'))){
+        //         $permiso = $this->usuarios->check_permiso($this->session->userdata('usuario'), 47);                
+        //     }else if(in_array("129", $this->session->userdata('id_rol'))){
+        //         $permiso = $this->usuarios->check_permiso($this->session->userdata('usuario'), 129);                
+        //     }else if(in_array("49", $this->session->userdata('id_rol'))){
+        //         $permiso = $this->usuarios->check_permiso($this->session->userdata('usuario'), 49);                
+        //     }
+        //     if($permiso == true){
                 $data['datos'] = $this->contrato->get_contratos_vigentes();
                 //$data['servicios'] = $this->servicios->get_all();  
                 $data['servicios'] = $this->servicios->get_servicios();
@@ -44,33 +44,33 @@ class Contrato extends CI_Controller {
                 $data['fichas'] = $this->ficha->where('estado_cliente_ficha', 'activo')->get_all(); 
                 $data['laficha'] = $this->ficha->get_ficha_by_contrato();
 
-                 if(in_array(48, $this->session->userdata('id_rol'))){
-                    $data['area'] = 48; //juridico
-                }else{
-                    if(in_array(93, $this->session->userdata('id_rol'))){
-                        $data['area'] = 93; //logistica
-                    }else{
-                        if(in_array(47, $this->session->userdata('id_rol'))){
-                            $data['area'] = 47; //sad
-                        }else{
-                            if(in_array(49, $this->session->userdata('id_rol'))){
-                            $data['area'] = 49; //sad
-                            }else{
-                                if(in_array(129, $this->session->userdata('id_rol'))){
-                                $data['area'] = 129; //auditorAS
-                                }
-                            }
-                        }
-                    }
-                }
+                //  if(in_array(48, $this->session->userdata('id_rol'))){
+                //     $data['area'] = 48; //juridico
+                // }else{
+                //     if(in_array(93, $this->session->userdata('id_rol'))){
+                //         $data['area'] = 93; //logistica
+                //     }else{
+                //         if(in_array(47, $this->session->userdata('id_rol'))){
+                //             $data['area'] = 47; //sad
+                //         }else{
+                //             if(in_array(49, $this->session->userdata('id_rol'))){
+                //             $data['area'] = 49; //sad
+                //             }else{
+                //                 if(in_array(129, $this->session->userdata('id_rol'))){
+                //                 $data['area'] = 129; //auditorAS
+                //                 }
+                //             }
+                //         }
+                //     }
+                // }
                 $data['main'] = 'contrato/contratos_view';
                 $this->load->view('template/layout', $data);    
-            }
-            else{
-                echo '<script>alert("Usted no tiene acceso a la URL solicitada");</script>';
-                echo "<script>window.location.replace('http://192.168.5.64/registro_contrato');</script>";
-            }
-        }
+            // }
+            // else{
+            //     echo '<script>alert("Usted no tiene acceso a la URL solicitada");</script>';
+            //     echo "<script>window.location.replace('http://192.168.5.64/registro_contrato');</script>";
+            // }
+        // }
     }
 
     public function nuevo() { 

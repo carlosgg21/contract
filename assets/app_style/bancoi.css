@@ -124,4 +124,58 @@ legend.scheduler-border {
     font-size: medium
 }
 
+ .box-yelow{
+    padding-left: 4%;
+    padding-bottom: 4%;
+    border-style: solid; 
+    border-color: #DC901E; 
+    color: #193962;                
+
+}
+ .box-yelow h2{                  
+    text-transform: uppercase;
+}
+ .box-yelow h6{                  
+    text-transform: uppercase;
+}
+
+ .box-blue{
+    padding-left: 4%;
+    padding-bottom: 4%;
+    border-style: solid; 
+    border-color: #193962;  
+    color: #DC901E;                
+}
+ .box-blue h2{                  
+    text-transform: uppercase;
+}
+ .box-yelow h3{                  
+    text-transform: uppercase;
+}
+ .box-blue h3{                  
+    text-transform: uppercase;
+}
+
+
+.box-contractblue{
+    padding-left: 4%;
+    padding-bottom: 4%;
+    border-style: solid; 
+    opacity: 0.8;
+    border-color: #193962; 
+    background-color: #193962; 
+    color: white;                
+     text-transform: uppercase;
+}
+.box-contractyelow{
+    padding-left: 4%;
+    padding-bottom: 4%;
+    border-style: solid; 
+    opacity: 0.8;
+    border-color: #DC901E; 
+    background-color: #DC901E; 
+    color: white;                
+     text-transform: uppercase;
+}
+
 

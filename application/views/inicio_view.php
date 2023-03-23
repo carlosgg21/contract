@@ -1,100 +1,199 @@
+<div class="container-fluid">
 
+    <!-- PANEL RESUMEN  -->
+    <div class="row">
+        <!-- Column -->
+        <div class="col-md-6 col-lg-3 col-xlg-2">
+            <div class="box  box-yelow text-center">
+                <h1 class="font-light">
+                    <i class="fa fa-users" aria-hidden="true"></i>
+                    <?php echo $result['provedores']['cantEnterpriseWithContract'] ?>
+                </h1>
 
-<div  class="container-fluid">
+                <p style="font-size: large;text-transform: uppercase;">
+                    Provedores
+                </p>
+            </div>
 
-    <!-- Page Heading -->
-    <ol class="breadcrumb">
-        <li><a href="<?php echo base_url('contrato'); ?>"><i class="fa fa-file-text-o"></i> Listado de contratos</a></li>
+        </div>
+        <!-- Column -->
+        <div class="col-md-6 col-lg-3 col-xlg-2">
+            <div class="box box-blue text-center">
+                <h1 class="font-light text-white">
+                    <i class="fa fa-clone" aria-hidden="true"></i>
+                    <?php echo $result['servicios']['cantServiceWithContract'] ?>
+                </h1>
 
-        <li class="active">Inicio</li>
-    </ol>
-    <!-- /.row -->
+                <p style="font-size: large;text-transform: uppercase;">
+                    Servicios
+                </p>
+            </div>
 
-    <!--                <div class="row">
-                        <div class="col-lg-12">
-                            <div class="alert alert-info alert-dismissable">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                <i class="fa fa-info-circle"></i>  <strong>Like SB Admin?</strong> Try out <a href="http://startbootstrap.com/template-overviews/sb-admin-2" class="alert-link">SB Admin 2</a> for additional features!
-                            </div>
-                        </div>
-                    </div>-->
-    <!-- /.row -->
+        </div>
+        <div class="col-md-6 col-lg-3 col-xlg-2">
+            <div class="box  box-yelow text-center">
+                <h1 class="font-light">
+                    <i class="fa fa-file-text-o" aria-hidden=" true"></i>
+                    <?php echo $result['cantContratos'] ?>
+                </h1>
+                <p style="font-size: large;text-transform: uppercase;">
+                    Contratos Vigentes
+                </p>
 
-    <div class="row">      
-<!--        <div class="col-lg-3 col-md-6">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
+            </div>
+        </div>
+        <!-- Column -->
+        <div class="col-md-6 col-lg-3 col-xlg-2">
+            <div class="box box-blue text-center">
+                <h1 class="font-light text-white">
+                    <i class="fa fa-cubes" aria-hidden="true"></i>
+                    <?php echo $result['procesos']['cantProcesWithContract'] ?>
+                </h1>
+
+                <p style="font-size: large;text-transform: uppercase;">
+                    Procesos
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- END PANEL RESUMEN -->
+
+    <!--  CONTRATOS POR AÑO -->
+    <div style="margin-top: 2%;" class="row">
+        <div class="col-md-6 col-lg-6 col-xlg-2">
+            <div class="panel panel-default">
+
+                <div class="panel-body">
+                    <h4 class="card-title">CONTRATOS POR AÑOS</h4>
+                    <div id="morris-bar-chart"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-6 col-xlg-2">
+            <div class="panel panel-default">
+
+                <div class="panel-body">
+                    <h1 style="color:#193962; font-weight: bold;">2023</h1>
                     <div class="row">
-                        <div class="col-xs-3">
-                            <i class="fa fa-trello fa-5x"></i>
+                        <div style="margin-left:3%;margin-right: 1%;" class="col-md-6 col-lg-6 col-xlg-2 box box-contractblue">
+                            <h1>
+                                <i class="fa fa-pencil-square-o"></i> <?php echo $result['actualInfo']['firmados'] ?>
+
+
+                            </h1>
+                            <h2 class="text-right">
+
+                                Nuevos contratos firmados
+
+                            </h2>
                         </div>
-                        <div class="col-xs-9 text-right">
-                            <div class="huge"><h1>Contratos</h1></div>
-                            <div>New Orders!</div>
+
+                        <div style="margin-left:3%;margin-right: 1%;" class="col-md-6 col-lg-5 col-xlg-2 box box-contractyelow">
+                            <h1>
+                                <i class="fa fa-calendar-times-o"></i> <?php echo $result['actualInfo']['expiran'] ?>
+
+
+                            </h1>
+                            <h2 class="text-right">
+
+                                Contratos que<br> vencen
+
+                            </h2>
                         </div>
+
                     </div>
                 </div>
-
-                <div class="panel-footer">                    
-                    <div><p class="text-primary">Cantidad de Contratos Vigentes<strong> <?php echo $datos['cant_vigentes'];?></strong> </p> </div>
-                    <div><p class="text-danger">Cantidad de Contratos Caducos<strong> <?php echo $datos['cant_caducos'];?></strong> </p> </div>
-                    <div><?php echo 0 ?> Cantidad de vistas</div>
-                </div>
             </div>
-        </div>-->
-<!--        <div class="col-lg-3 col-md-6">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <div class="row">
-                        <div class="col-xs-3">
-                            <i class="fa fa-file-code-o fa-5x"></i>
-                        </div>
-                        <div class="col-xs-9 text-right">
-                            <div class="huge"><h1>Reportes</h1></div>
-                            <div>New Orders!</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="panel-footer">
-                    <div><?php echo 0 ?> Cantidad de controladores</div>
-                    <div><?php echo 0 ?> Cantidad de modelos</div>
-                    <div><?php echo 0?> Cantidad de vistas</div>
-                </div>
-
-            </div>
-        </div>-->
-        
-<!--        lianet-->
-    
+        </div>
+    </div>
+    <!-- END  CONTRATOS POR AÑO -->
 
 
-    <div class="col-md-4 box effect1">           
-            <div class="page-header">
-                <a style="text-decoration: none"><h2>Sistema Registro de Contratos</h2></a>
-            </div>
-            <div>
-                <p><strong>Cantidad vigentes:</strong> <?php echo $datos['cant_vigentes'];?></p>
-                <p><strong>Cantidad caducos:</strong> <?php echo $datos['cant_caducos'];?></p>
-                
-                <br>
-            </div>
-        </div>        
+    <!-- CONTRATOS POR TIPO DE PERSONA -->
+    <div style="margin-top: 2%; margin-left: 1px; margin-right: 1px;" class="row box box-yelow">
+        <div class="col-md-6 col-lg-4 col-xlg-2 text-center">
+            <h2>
+                <?php echo $result['tipoPersona']['typeEe'] ?> <small>Empresa Estatal</small>
+
+            </h2>
+            <div class="chart chart1 canvas" data-percent="<?php echo $result['tipoPersona']['eePercentage'] ?> "><?php echo $result['tipoPersona']['eePercentage'] ?> %</div>
+        </div>
+        <div class="col-md-6 col-lg-4 col-xlg-2 text-center">
+            <h2>
+                <?php echo $result['tipoPersona']['typeEnE'] ?> <small>Empresa NO Estatal</small>
+            </h2>
+            <div class="chart chart2 canvas" data-percent="<?php echo $result['tipoPersona']['enePercentage'] ?>"><?php echo $result['tipoPersona']['enePercentage'] ?>%</div>
+        </div>
+        <div class="col-md-6 col-lg-4 col-xlg-2">
+            <h2>
+                <?php echo $result['tipoPersona']['typeTcp'] ?> <small>Trabajador por Cuenta Propia (TCP)</small>
+            </h2>
+            <div class="chart chart3 canvas" data-percent="<?php echo $result['tipoPersona']['tcpPercentage'] ?>"><?php echo $result['tipoPersona']['tcpPercentage'] ?>%</div>
+        </div>
+
+
     </div>
 
-    <!--                                <div class="row">
-                        <div class="col-lg-12">
-                            <div class="alert alert-info alert-dismissable">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                <i class="fa fa-info-circle"></i>  <strong>Versión 1.0</strong> | 01  de Febrero 2018 <a href="http://www.bancoi.cu" class="alert-link">Banco de Inversiones S.A</a> 
-                            </div>
-                        </div>
-                    </div>-->
+    <!-- END CONTRATOS POR TIPO DE PERSONA -->
+
+    <!-- TABLA MÁS CONTRATOS POR PROCESOS Y SERVICIO -->
+    <!-- <div style="margin-top: 2%;" class="row">
+        <div class="col-md-6 col-lg-6 col-xlg-2">
+            <div class="panel panel-primary">
+                <div class="panel-heading">PROCESOS CON MÁS CONTRATOS</div>
+                <div class="panel-body">
+                    <table class="table table-striped table-responsive">
+                        <thead>
+                            <tr>
+                                <th>PROCESO</th>
+                                <th class=" text-center">CANTIDAD DE CONTRATOS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($result['procesos']['getFiveMost'] as  $value) : ?>
+                                <tr>
+                                    <td><?php echo $value['proceso'] ?></td>
+                                    <td class=" text-center"><?php echo $value['cant_contratos'] ?></td>
+
+                                </tr>
+                            <?php endforeach ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- <div class="col-md-6 col-lg-6 col-xlg-2">
+            <div class="panel panel-primary">
+                <div class="panel-heading">SERVICIOS CON MÁS CONTRATOS</div>
+                <div class="panel-body">
+                    <table class="table table-striped table-responsive">
+                        <thead>
+                            <tr>
+                                <th>SERVICIO</th>
+                                <th class=" text-center">CANTIDAD DE CONTRATOS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($result['servicios']['getFiveMost'] as  $value) : ?>
+                                <tr>
+                                    <td><?php echo $value['nombre_servicio'] ?></td>
+                                    <td class=" text-center"><?php echo $value['cant_contratos'] ?></td>
+
+                                </tr>
+                            <?php endforeach ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div> -->
+    </div>
+
+    <!-- END MÁS CONTRATOS POR PROCESOS Y SERVICIO -->
+
+
 
 
 
 </div>
 <!-- /.container-fluid -->
-
-
-
