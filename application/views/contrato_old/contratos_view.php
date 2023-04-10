@@ -6,7 +6,7 @@
         <!--<li><a href="<?php echo base_url('contrato') ?>"><span class="fa fa-file-text-o"></span> Listado Contratos Vigentes-->
         <li class="active"> Listado Contratos</li>
     </ol>
-    <div class="toolbar_contract">
+    <div class="toolbar">
         <div class="row">
             <!-- <a href="<?php echo base_url('contrato/nuevo'); ?>" class="btn btn-primary " style="margin-left: 15px"><i class="fa fa-plus-square-o"></i> Nuevo Contrato</a> -->
             <!-- <a href="<?php echo base_url('contrato/exportar_pdf/'); ?>" target="_blank" class="btn btn-primary" style="margin-left: 800px"><i class="fa fa-file-pdf-o"> Exportar a PDF</i></a> -->
@@ -59,35 +59,20 @@
 
             <div class="row">
                 <div class="col-md-3">
-                    <label for="exampleInputEmail1">Año firma</label>
-
-                    <select class="form-control input-sm" name="year_firma">
-                        <option value="">--Seleccione un Año--</option>
-                        <?php foreach ($filtros['years']  as $year) : ?>
-                            <?php if (!empty($request['year_firma']) && $request['year_firma'] == $year['year_firma']) : ?>
-                                <option value="<?php echo $year['year_firma']; ?>" selected="selected"><?php echo $year['year_firma']; ?></option>
-                            <?php else : ?>
-                                <option value="<?php echo $year['year_firma']; ?>"><?php echo $year['year_firma']; ?></option>
-                            <?php endif; ?>
-                        <?php endforeach; ?>
-                    </select>
-
-                </div>
-                <!-- <div class="col-md-3">
                     <label for="exampleInputEmail1">Fecha Firma</label>
                     <input class="form-control input-sm" type="date" name="fecha_firma" value="<?php echo !empty($request['fecha_firma']) && $request['fecha_firma']  ? $request['fecha_firma'] : ''; ?>">
 
-                </div> -->
-                <!-- <div class=" col-md-3">
+                </div>
+                <div class=" col-md-3">
                     <label for="exampleInputEmail1">Fecha Vencimiento</label>
                     <input class="form-control input-sm" type="date" name="fecha_vence" value="<?php echo !empty($request['fecha_vence']) && $request['fecha_vence']  ? $request['fecha_vence'] : ''; ?>">
 
-                </div> -->
+                </div>
                 <div class="col-md-3">
                     <label for="exampleInputEmail1">Servicios</label>
                     <select class="form-control input-sm" name="servicio">
                         <option value="">--Seleccione un Servicio--</option>
-                        <?php foreach ($filtros['servicios'] as $serv) : ?>
+                        <?php foreach ($serviciosFiltro as $serv) : ?>
                             <?php if (!empty($request['servicio']) && $request['servicio'] == $serv['idTipoServicio']) : ?>
                                 <option value="<?php echo $serv['idTipoServicio']; ?>" selected="selected"><?php echo $serv['nombre_servicio']; ?></option>
                             <?php else : ?>
@@ -101,7 +86,7 @@
                     <label for="exampleInputEmail1">Provedores</label>
                     <select class="form-control input-sm" name="provedor">
                         <option value="">--Seleccione un Provedor--</option>
-                        <?php foreach ($filtros['provedores']  as $prov) : ?>
+                        <?php foreach ($provedoresFiltro as $prov) : ?>
                             <?php if (!empty($request['provedor']) && $request['provedor'] == $prov['idEmpresa']) : ?>
                                 <option value="<?php echo $prov['idEmpresa']; ?>" selected="selected"><?php echo $prov['nombre_empresa']; ?></option>
                             <?php else : ?>
@@ -112,11 +97,14 @@
                     </select>
 
                 </div>
+            </div>
+            <br>
+            <div class="row">
                 <div class="col-md-3">
                     <label for="exampleInputEmail1">Procesos</label>
                     <select class="form-control input-sm" name="proceso" id="inputProceso">
                         <option value="">--Seleccione un Proceso--</option>
-                        <?php foreach ($filtros['procesos'] as $proc) : ?>
+                        <?php foreach ($procesosFiltro as $proc) : ?>
                             <?php if (!empty($request['proceso']) && $request['proceso'] == $proc['id_procesos']) : ?>
                                 <option value="<?php echo $proc['id_procesos']; ?>" selected="selected"><?php echo $proc['proceso']; ?></option>
                             <?php else : ?>
@@ -126,24 +114,32 @@
                     </select>
 
                 </div>
-            </div>
-            <br>
+                <div class="col-md-3">
+                    <label for="exampleInputEmail1">Año firma</label>
 
+                    <select class="form-control input-sm" name="year_firma">
+                        <option value="">--Seleccione un Año--</option>
+                        <?php foreach ($yearsFiltro as $year) : ?>
+                            <?php if (!empty($request['year_firma']) && $request['year_firma'] == $year['year_firma']) : ?>
+                                <option value="<?php echo $year['year_firma']; ?>" selected="selected"><?php echo $year['year_firma']; ?></option>
+                            <?php else : ?>
+                                <option value="<?php echo $year['year_firma']; ?>"><?php echo $year['year_firma']; ?></option>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <div class="col-md-3">
+
+
+                </div>
+                <!-- <div class="col-md-3">
+
+            </div> -->
+            </div>
 
             <div class="row">
 
-                <div class="col-md-3">
-                    <div class="checkbox">
-                        <!-- <label for="">Mostrar contratos</label> -->
-                        <label>
-                            <input type="checkbox" value="1" name="vigentes" <?php echo !empty($request['vigentes']) && $request['vigentes']  ? 'checked' : ''; ?>>
-                            Contratos vigentes del sistema
-                        </label>
-                        <p class="help-block">Muestra todos los contratos vigentes</p>
-                    </div>
-
-                </div>
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="checkbox">
                         <!-- <label for="">Mostrar contratos</label> -->
                         <label>
@@ -174,13 +170,10 @@
                     <tr>
                         <th></th>
                         <th>No. contrato</th>
-                        <th><?php echo !empty($request['todos_contratos']) ? 'No de suplemento' : 'Cantidad de suplementos'; ?></th>
-
+                        <th>Cantidad de suplementos</th>
                         <!-- <td></td> -->
-
-
-                        <?php echo !empty($request['vigentes']) ? '<th>Año firma</th>' : ''; ?>
-                        <th>Proveedor</th>
+                        <th>Año firma</th>
+                        <th>Empresa</th>
                         <th>Servicio</th>
                         <th>Año expira</th>
                         <th>Documento escaneado</th>
@@ -196,33 +189,52 @@
                 <tbody>
                     <?php foreach ($datos as $x => $row) : ?>
                         <tr>
-                            <td><?php echo $x + 1; ?></td>
-                            <td><?php echo $row['no_contrato']; ?></td>
-                            <td class="text-center">
-                                <?php echo (empty($request['todos_contratos']))
-                                    ? ($row['cantidad_suplementos'] ? "<span class='label label-info'><a style='color: white;' href='contrato/suplementos/{$row['id_contrato']}' target='_blank'>{$row['cantidad_suplementos']}</a></span>" 
-                                    : "-")
-                                    : $row['no_suplemento'];
+                            <td><?php
+                                echo $x + 1;
+
                                 ?>
                             </td>
+                            <td><?php echo $row['no_contrato']; ?></td>
+                            <!-- <td><?php echo $row['no_suplemento']; ?></td> -->
+                            <td class="text-center">
 
-                            <?php echo !empty($request['vigentes']) ? '<td title="' . $row['fecha_firma'] . '">' . $row['year_firma'] . '</td>' : ''; ?>
 
+                                <?php if (array_key_exists($row['no_contrato'], $registroNo)) : ?>
+                                    <?php $cantSup = count($registroNo[$row['no_contrato']]) ?>
+                                    <?php if ($cantSup == 1) : ?> <!--si nomero de sumpleto es nullo  -->
+                                        -
+                                    <?php else : ?>
+                                        <?php if (!$row['no_suplemento']) : ?>
+                                            <span class='label label-info'>
+                                                <!-- cantidad de suplementos que tiene un contrato  -->
+                                                <a style="color: white;" href="<?php echo "contrato/suplementos/" . $row['id_contrato']; ?>" target="_blank"> <?php echo $cantSup;  ?></a>
+                                            </span>
+                                        <?php else : ?>
+                                            <?php echo 'Suplemento o Contrato especifíco No: <br> ' . $row['no_suplemento']; ?>
+                                        <?php endif; ?>
+
+                                        <!-- <button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#demo<?php echo $x ?>">
+                                    simple collapsible
+                                </button> -->
+                                    <?php endif; ?>
+                                <?php endif; ?>
+
+
+
+                            </td>
+
+                            <td title="<?php echo $row['fecha_firma']; ?>"><?php echo $row['year_firma']; ?></td>
                             <td><?php echo $row['nombre_empresa']; ?></td>
                             <td><?php echo $row['nombre_servicio']; ?></td>
-                            <?php
-                            $fecha_expira = $row['fecha_expira'] ? $row['fecha_expira'] : '';
-                            $year_expira = $row['year_expira'] ? $row['year_expira'] : '';
-                            ?>
-                            <td title="<?php echo $fecha_expira ?>"><?php echo $year_expira ?></td>
+                            <?php if ($row['fecha_expira'] == "0000-00-00") : ?>
+                                <td></td>
+                            <?php endif; ?>
+                            <?php if ($row['fecha_expira'] != "0000-00-00") : ?>
+                                <td title="<?php echo $row['fecha_expira']; ?><"><?php echo $row['year_expira']; ?></td>
+                            <?php endif; ?>
 
-                            <td <?= !empty($row['documento']) ? 'align="center"' : '' ?>>
-                                <?php if (!empty($row['documento'])) : ?>
-                                    <a title="documento escaneado" target="_BLANK" href="<?= base_url('documents/contratos/' . $row['documento'] . '.pdf') ?>">
-                                        <img src="<?= base_url('assets/imagenes/pdfs.png') ?>" width="40" height="40">
-                                    </a>
-                                <?php endif; ?>
-                            </td>
+
+                            <td>documento</td>
 
 
 
@@ -231,9 +243,13 @@
                             <td><a class="btn btn-info btn-sm" data-toggle="modal" href="#ficha<?php echo $row['id_contrato']; ?>" title="Ver ficha cliente"><span class="fa fa-user-o"></span></a></td>
                             <td><a class="btn btn-danger btn-sm" data-toggle="tooltip" title="Cancelar contrato" href="<?php echo "contrato/cancelar/" . $row['id_contrato']; ?>" onclick="return confirm('Desea cancelar el contrato?');"><i class="fa fa-check"></i> </a></td>
 
-
                         </tr>
 
+                        <!-- <div id="demo<?php echo $x ?>" class=" collapse ">
+                    dadasd
+                </div> -->
+
+                        <!--                mostrar detalles de la ficha cliente-->
 
                         <!-- Modal detalle solicitud de servicio -->
                         <div class="modal fade" id="ficha<?php echo $row['id_contrato']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -264,9 +280,6 @@
                             </div><!-- /.modal-dialog -->
                         </div><!-- /.modal -->
                         <!--                fin de mostrar detalles de la ficha cliente-->
-
-
-
                         <!-- Modal Modificar -->
                         <div class="modal fade" id="myModal<?php echo $row['id_contrato']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                             <div class="modal-dialog" style="width: 100%">
@@ -455,8 +468,6 @@
                                 </div><!-- /.modal-content -->
                             </div><!-- /.modal-dialog -->
                         </div><!-- /.modal -->
-
-
                     <?php endforeach; ?>
                 </tbody>
             </table>

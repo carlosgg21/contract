@@ -91,6 +91,8 @@ $autoload['drivers'] = array();
 */
 $autoload['helper'] = array('url','form');
 
+
+
 /*
 | -------------------------------------------------------------------
 |  Auto-load Config files
@@ -133,3 +135,10 @@ $autoload['language'] = array();
 |	$autoload['model'] = array('first_model' => 'first');
 */
 $autoload['model'] = array('Log_model','System_model');
+
+
+function loadContractTrait()
+{
+    require_once APPPATH . 'traits/ContractTrait.php';
+}
+spl_autoload_register('loadContractTrait');

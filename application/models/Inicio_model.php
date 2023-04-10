@@ -3,47 +3,14 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
+// require_once APPPATH . 'traits\ContractTrait.php';
+
 class Inicio_model extends CI_Model
 {
-    protected $db_sgrc;
-    protected $entity;
-    protected $get_all;
+    use ContractTrait;
+
     const CONTRACTS_LIMIT = 7;
 
-    public function __construct()
-    {
-        parent::__construct();
-        $this->db_sgrc = $this->load->database('sgrc', TRUE);
-        $this->entity  = "current_contract";
-        $this->get_all = "all_current_contract";
-    }
-
-
-    /**
-     * contratos vigentes sin
-     * suplemento
-     *
-     * @return void
-     */
-    public function current()
-    {
-        $this->db_sgrc->select('*');
-        $this->db_sgrc->from($this->entity);
-        return $this->db_sgrc;
-    }
-
-    /**
-     * Contratos vigentes 
-     * con suplementos
-     *
-     * @return void
-     */
-    public function all()
-    {
-        $this->db_sgrc->select('*');
-        $this->db_sgrc->from($this->get_all);
-        return $this->db_sgrc;
-    }
 
     /**
      * Proceso el resultado para darle formato al 

@@ -1,4 +1,4 @@
-<input type="text" class="form-control hide" id="identificador_rol" name="identificador_rol" value="<?php echo $area; ?>">   
+<!-- <input type="text" class="form-control hide" id="identificador_rol" name="identificador_rol" value="<?php echo $area; ?>">    -->
 
 <?php foreach ($datos as $row): ?>
     <?php if ($row['id_contrato'] == $contrato): ?>
@@ -8,11 +8,7 @@
                 <li class="active"> Modificar Contrato</li>
             </ol>
 
-            <?php if ($this->session->flashdata('ms_modificar')): ?>
-                <div id="ms_modificar" class="alert alert-success">
-                    <?php echo $this->session->flashdata('ms_modificar') ?>
-                </div>
-            <?php endif; ?>
+          
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title">Modificar contrato</h3>

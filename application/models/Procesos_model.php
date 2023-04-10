@@ -29,6 +29,11 @@ class Procesos_model extends CI_Model {
      * @return string
      */
     function get_all() {
+
+        $query = $this->db_sgrc->get('procesos');
+       return   $query->result_array();
+        // return json_decode($datos, true);
+       
         // if (!$datos = file_get_contents('http://192.168.5.64/rest_api/procesos?format=json')) {
         //     return "HTTP request failed. Error was";
         // }

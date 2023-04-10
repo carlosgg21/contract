@@ -41,7 +41,7 @@ class Inicio extends CI_Controller
         // $data['main'] = 'inicio_view';
         // $this->load->view('template/layout', $data);
 
-
+     
         try {
             $data['result'] = $this->inicio->resumen();
             $data['main'] = 'inicio_view';

@@ -1,22 +1,26 @@
-<!-- <input type="text" class="form-control hide" id="identificador_rol" name="identificador_rol" value="<?php echo $area; ?>">    -->
+<input type="text" class="form-control hide" id="identificador_rol" name="identificador_rol" value="<?php echo $area; ?>">   
 
 <?php foreach ($datos as $row): ?>
     <?php if ($row['id_contrato'] == $contrato): ?>
         <div class="container-fluid">
             <ol class="breadcrumb">
                 <li><a href="<?php echo base_url('contrato') ?>"><span class="fa fa-file-text-o"></span> Listado Contratos Vigentes</a></li>
-                <li class="active">Suplemento</li>
+                <li class="active"> Modificar Contrato</li>
             </ol>
 
-        
+            <?php if ($this->session->flashdata('ms_modificar')): ?>
+                <div id="ms_modificar" class="alert alert-success">
+                    <?php echo $this->session->flashdata('ms_modificar') ?>
+                </div>
+            <?php endif; ?>
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Suplemento al contrato <?php echo $contrato; ?></h3>
+                    <h3 class="panel-title">Modificar contrato</h3>
                 </div>
                 <div class="panel-body">
                     <?php
                     $attributes = array('id' => 'fcontrato', 'role' => 'form');
-                    echo form_open_multipart('contrato/suplementar/' . $row['id_contrato'], $attributes);
+                    echo form_open_multipart('contrato/modificar/' . $row['id_contrato'], $attributes);
                     ?>
                     
                     <input type="text" class="form-control hide" id="id_contrato" name="id_contrato">                   
@@ -27,8 +31,8 @@
                                 <div class="form-group">
                                     <label for="exampleInputnocontrato">No. Contrato</label>
                                     <input type="text" class="form-control input-sm " name="no_contrato" id="no_contrato" placeholder="" autofocus value="<?php echo $row['no_contrato']; ?>" disabled="true"/>
-                                    <input type="text" class="form-control hide" id="el_contrato" name="el_contrato" value="<?php echo $row['no_contrato']; ?>">
-                                </div>
+				    <input type="text" class="form-control hide" id="el_contrato" name="el_contrato" value="<?php echo $row['no_contrato']; ?>">
+				</div>
                             </div>
                             <div class="col-sm-3">
                                 <label for="exampleInputnosuplemento">No. Suplemento</label>
@@ -127,7 +131,7 @@
                             <div class="col-sm-2">
                                 <div class="form-group">
                                     <label>Período</label>
-                                    <div class="form-inline"> 
+                                    <div class="form-inline" id="f_exp"> 
                                         <?php if($row['periodo'] == 'd'):?>
                                             <input type="radio" name="periodo" id="periodo" value="d" checked="true" disabled="true"> Días
                                             <input type="radio" name="periodo" id="periodo" value="m" disabled="true"> Meses
@@ -168,40 +172,50 @@
                             </div>   
                         </div>
                     </div>    
-                    <div class="row" id="logistica">
+                    <div class="row">
                         <div class="col-sm-3 col-md-offset-1">
                             <div class="form-group">
-                                <label for="exampleInputdocumento">Ficha cliente*</label>
-                                <select name="id_ficha" id="id_ficha" multiple class="form-control input-sm selectpicker" data-selected-text-format="count" data-live-search="true" required="true"   data-actions-box="true" >
+                                <label for="exampleInputdocumento">Ficha cliente</label>
+                                <select name="id_ficha[]" id="id_ficha[]" multiple class="form-control input-sm selectpicker" data-selected-text-format="count" data-live-search="true" data-actions-box="true" >
                                     <!--  usar el optgroup si se quisiera separar los clientes por grupos-->
                                     <!--  <optgroup label="Clientes">--> 
-                                        <?php foreach ($fichas as $f_client): ?>
-                                    <option value="<?php echo $f_client['id_ficha'] ?>"><?php echo $f_client['cliente_nombre_apellidos'] ?></option>
-                                        <?php endforeach; ?>
+                                    <?php foreach ($fichas as $f_client): ?>                                    
+                                        <option value="<?php echo $f_client['id_ficha'] ?>"
+                                            <?php foreach ($ficha_guardada as $marcar): ?> 
+                                               <?php if ($marcar['idFichaCliente'] == $f_client['id_ficha']): ?>selected="true"<?php endif; ?> 
+                                            <?php endforeach; ?>
+                                        > 
+                                        <?php echo $f_client['cliente_nombre_apellidos'] ?></option>
+                                    <?php endforeach; ?>
                                     <!--  </optgroup>   -->
                                 </select>
                             </div>
-                        </div>                
-                    </div>
-                    <div class="row" id="juridico_obs">
-                        <div class="col-md-9 col-md-offset-1">
-                            <div class="form-group">
-                                <label for="exampleInputobservaciones">Observaciones</label>
-                                <textarea style="resize: none" class="form-control" rows="3" name="observaciones" id="observaciones" placeholder="Observaciones" disabled="true"></textarea>
-                            </div>
+                        </div> 
+                        
+                    </div> 
+                </div>
+                
+                <div class="row" id="juridico_obs">
+                    <div class="col-md-9 col-md-offset-1">
+                        <div class="form-group">
+                            <label for="exampleInputobservaciones">Observaciones</label>
+                            <?php foreach ($observ as $obs): ?>
+                                <textarea style="resize: none" class="form-control" rows="3" name="observaciones" id="observaciones" placeholder="<?php echo $obs->observaciones; ?>"  disabled="true" ></textarea>
+                            <?php endforeach; ?>
                         </div>
-
                     </div>
 
-                    <div class="row">           
-                        <div class="col-md-10">
-                            <div class="pull-right">
-                                <button type="reset" class="btn btn-default  btn-sm" >Cancelar</button>
-                                <input type="submit" class="btn btn-primary  btn-sm" value="Aceptar">
-                            </div>
-                        </div>         
-                    </div>
-                    </form>
+                </div>                
+
+                <div class="row">           
+                    <div class="col-md-10">
+                        <div class="pull-right">
+                            <button type="reset" class="btn btn-default  btn-sm" >Cancelar</button>
+                            <input type="submit" class="btn btn-primary  btn-sm" value="Aceptar">
+                        </div>
+                    </div>         
+                </div>
+                </form>
                 </div>
             </div>
         </div>

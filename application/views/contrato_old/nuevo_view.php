@@ -11,7 +11,21 @@
         <li class="active"> Nuevo  Contrato</li>
     </ol>
 
-
+    <?php if ($this->session->flashdata('ms_insertar')): ?>
+        <div id="ms_insertar" class="alert alert-success">
+            <?php echo $this->session->flashdata('ms_insertar') ?>
+        </div>
+    <?php endif; ?>
+    <?php if ($this->session->flashdata('ms_eliminar')): ?>
+        <div id="ms_eliminar" class="alert alert-danger">
+            <?php echo $this->session->flashdata('ms_eliminar') ?>
+        </div>
+    <?php endif; ?>
+    <?php if ($this->session->flashdata('ms_modificar')): ?>
+        <div id="ms_modificar" class="alert alert-success">
+            <?php echo $this->session->flashdata('ms_modificar') ?>
+        </div>
+    <?php endif; ?>
     <div class="panel panel-primary">
         <div class="panel-heading">
             <h3 class="panel-title">Nuevo contrato</h3>

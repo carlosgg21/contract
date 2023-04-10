@@ -39,6 +39,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
             float: left;
         }
 
+    
+        .toolbar_contract {
+            float: right;
+        }
+
         .chart canvas {
             position: absolute;
         }
@@ -52,6 +57,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
             font-weight: bold;
             /* background: pink; */
 
+        }
+
+        .dataTables_filter {
+            float: left;
         }
 
         /*            .pointer {
